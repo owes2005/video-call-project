@@ -40,8 +40,8 @@ function App() {
       setRemoteUsers((prev) => prev.filter((u) => u !== id));
     });
 
-    socket.on("receive-message", (msg) => {
-      setMessages((prev) => [...prev, msg]);
+    socket.on("receive-message", (message) => {
+      setMessages((prev) => [...prev, message]);
     });
 
     return () => {
@@ -82,7 +82,7 @@ function App() {
       peer.addTrack(track, localStreamRef.current)
     );
 
-    // 🔥 Bitrate limit (performance fix)
+    //  Bitrate limit 
     peer.getSenders().forEach((sender) => {
       if (sender.track?.kind === "video") {
         const params = sender.getParameters();
